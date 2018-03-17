@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fadeout</title>
+</head>
+<body>
+
+    <main>
+        <img src="image1.jpeg" alt="">
+        <img src="image2.jpeg" alt="">
+        <img src="image3.jpeg" alt="">
+        <img src="image4.jpeg" alt="">
+    </main>
+
+    <button onclick="anterior()">Anterior</button>    
+    <button onclick="proximo()">Próximo</button>
+    
+    <script>
+        
+        var images = document.querySelectorAll('img');
+        var first = 0;
+        var last = images.length - 1; // 3
+        var current = last; // 3, 2, 1, 2, 3
+
+        function proximo() {
+            if (images[current]) {
+                images[current].classList.add('fadeout');
+            }
+            if (current > first + 1) {
+                current = current - 1;
+            }
+        }
+
+        function anterior() {
+            if (images[current]) {
+                images[current].classList.remove('fadeout');
+            }
+            if (current < last) {
+                current = current + 1;
+            }
+        }
+    </script>
+
+    <style>
+        main {
+            position: relative;
+            height: 230px;
+        }
+        img {
+            position: absolute;
+            transition: opacity 2s;
+            opacity: 1;
+        }
+
+        .fadeout {
+            opacity: 0;
+        }
+    </style>
+
+</body>
+</html>
